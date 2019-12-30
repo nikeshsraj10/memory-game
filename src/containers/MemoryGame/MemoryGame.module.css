@@ -1,0 +1,50 @@
+.MemoryGame{
+    display: flex;
+    box-sizing: border-box;
+    margin-top: 70px;
+    height: 100%;;
+}
+
+.gamePage{
+    width: 85%;
+    height: 100%;
+    display: flex;
+}
+
+.controlsPage{
+    width: 15%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.grid {
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    perspective: 1000px;
+}
+
+.btn {
+    width: 80%;
+    border-radius: 5px;
+    background-color: #20232a;
+    padding: 5px;
+}
+
+.btn a {
+    text-decoration: none;
+    color: #61dafb;
+}
+
+.Scores {
+    margin: 2px;
+    border: 2px solid #20232a;
+}

@@ -1,0 +1,41 @@
+.Card{
+    height: 15%;
+    width: 15%;
+    margin: 2px;
+    padding-bottom: 15%;
+    position: relative;
+    border: 2px solid #61dafb;
+    background-color: #32363e;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.card_face{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+
+.back{
+    color: #61dafb;
+    transform: rotateY(180deg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;  
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.Card.isFlipped {
+    transform: rotateY(180deg);
+}
+
+.img{
+    max-height: 100%;
+    max-width: 100%;
+    padding: 18% 0;
+}
