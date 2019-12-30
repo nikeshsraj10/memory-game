@@ -3,6 +3,7 @@ import classes from './MemoryGame.module.css';
 import Modal from '../../components/Modal/Modal';
 import StopWatch from 'stopwatch-js';
 import Card from '../../components/Card/Card';
+import card from '../../components/Card/Card';
 
 class MemoryGame extends Component {
     
@@ -31,19 +32,22 @@ class MemoryGame extends Component {
          return stopWatch;
      }
      color = ['red', 'green', 'blue'];
-    //creates the numbers from 0 to 17 and duplicates it
-    grid = this.shuffle(Array.from({length: 2}, () => [...Array(18).keys()]).flat());
-    grid = this.grid.map((num, index) => {
-     return { value: num,
-        isFlipped: false,
-        revealed: false,
-        id: index,
-        color: this.color[index % 3]
-       }
-    
-    });
+    prepareGrid = (gridSize = 36) => {
+        const colors = ['red', 'green', 'blue'];
+        let numsArray = [...Array(gridSize / 2).keys()];
+        let cardsArray = numsArray.map((num, index) => {
+            return { value: num,
+               isFlipped: false,
+               revealed: false,
+               color: colors[index % 3]
+              }
+        });
+        let gridArray = this.shuffle(Array.from({length: 2}, () => cardsArray).flat());
+        gridArray = gridArray.map((card, index) => { return {...card, id: index}});
+        return gridArray;
+    }
     state = {
-        cardGrid: this.grid
+        cardGrid: this.prepareGrid() || []
     }
 
     timer = this.startTimer();
@@ -151,37 +155,37 @@ class MemoryGame extends Component {
         
         return(
             <React.Fragment>
-            {this.revealedCount === this.state.cardGrid.length ?
-             <Modal show={true} >
-                 <div>
-                     <h1>Congrats!! You Win</h1>
-                     <h3>You took {this.timer.duration()} second</h3>
-                     <button className={classes.btn}><a href='/'> New Game </a></button>
-                </div>
-             </Modal>: null}
-            <div className={this.memoryGameClasses.join(' ')}>
-                <div className={classes.gamePage}>
-                    <div className={classes.grid}>
-                        {this.state.cardGrid.map((card, index) => {
-                            return <Card clicked={this.cardClickHandler} card={card}/>
-                        })}
-                        </div>
-                </div>
-                <div className={classes.controlsPage}>
+                {this.revealedCount === this.state.cardGrid.length ?
+                <Modal show={true} >
                     <div>
-                        <button className={classes.btn}><a href='/'> Reset </a></button>
+                        <h1>Congrats!! You Win</h1>
+                        <h3>You took {this.timer.duration()} second</h3>
+                        <button className={classes.btn}><a href='/'> New Game </a></button>
                     </div>
-                    <div className={classes.Scores}>
-                        <div className={[classes.bold, classes.underline].join(' ')}>Scores</div>
-                        <span className={classes.bold}>Best Score: </span><span>{this.myScores.highScore ? this.myScores.highScore : 'None'}</span>
-                        <ol>
-                            {this.myScores.last10.map((score) => (
-                                <li>{score}</li>
-                            ))}
-                        </ol>
+                </Modal>: null}
+                <div className={this.memoryGameClasses.join(' ')}>
+                    <div className={classes.gamePage}>
+                        <div className={classes.grid}>
+                            {this.state.cardGrid.map((card, index) => {
+                                return <Card key={index} clicked={this.cardClickHandler} card={card}/>
+                            })}
+                            </div>
                     </div>
-                </div>
-            </div> 
+                    <div className={classes.controlsPage}>
+                        <div>
+                            <button className={classes.btn}><a href='/'> Reset </a></button>
+                        </div>
+                        <div className={classes.Scores}>
+                            <div className={[classes.bold, classes.underline].join(' ')}>Scores</div>
+                            <span className={classes.bold}>Best Score: </span><span>{this.myScores.highScore ? this.myScores.highScore : 'None'}</span>
+                            <ol>
+                                {this.myScores.last10.map((score, index) => (
+                                    <li key={index}>{score}</li>
+                                ))}
+                            </ol>
+                        </div>
+                    </div>
+                </div> 
             </React.Fragment>
         );
     }
