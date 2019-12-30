@@ -22,7 +22,6 @@ class MemoryGame extends Component {
           array[ind] = array[rand];
           array[rand] = temp;
         }
-      
         return array;
       }
 
@@ -30,12 +29,12 @@ class MemoryGame extends Component {
         let stopWatch = new StopWatch();
          stopWatch.start();
          return stopWatch;
-     }
-     color = ['red', 'green', 'blue'];
-    prepareGrid = (gridSize = 36) => {
+      }
+
+     prepareGrid = (gridSize = 36) => {
         const colors = ['red', 'green', 'blue'];
         let numsArray = [...Array(gridSize / 2).keys()];
-        let cardsArray = numsArray.map((num, index) => {
+        const cardsArray = numsArray.map((num, index) => {
             return { value: num,
                isFlipped: false,
                revealed: false,
@@ -59,10 +58,10 @@ class MemoryGame extends Component {
 
     storeScore = (score) => {
         let scores = localStorage.getItem('myScores');
-        if(scores && JSON.parse(scores).last10.length < 11){
+        if(scores && JSON.parse(scores).last10.length < 10){
             scores = JSON.parse(scores);
             scores.last10.unshift(Math.floor(score))
-        }else if(scores && JSON.parse(scores).last10.length > 10){
+        }else if(scores && JSON.parse(scores).last10.length >= 10){
             scores = JSON.parse(scores);
             scores.last10.pop();
             scores.last10.unshift(Math.floor(score));          
