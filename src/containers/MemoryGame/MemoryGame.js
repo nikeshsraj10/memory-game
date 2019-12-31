@@ -3,7 +3,6 @@ import classes from './MemoryGame.module.css';
 import Modal from '../../components/Modal/Modal';
 import StopWatch from 'stopwatch-js';
 import Card from '../../components/Card/Card';
-import card from '../../components/Card/Card';
 
 class MemoryGame extends Component {
     
@@ -13,10 +12,7 @@ class MemoryGame extends Component {
       
         // While there remain elements to shuffle…
         while (ind) {
-      
-          // Pick a remaining element…
           rand = Math.floor(Math.random() * ind--);
-      
           // And swap it with the current element.
           temp = array[ind];
           array[ind] = array[rand];
@@ -177,6 +173,8 @@ class MemoryGame extends Component {
                         <div className={classes.Scores}>
                             <div className={[classes.bold, classes.underline].join(' ')}>Scores</div>
                             <span className={classes.bold}>Best Score: </span><span>{this.myScores.highScore ? this.myScores.highScore : 'None'}</span>
+                            <hr/>
+                            <div style={{fontWeight:'bold'}}>Last 10 Scores</div>
                             <ol>
                                 {this.myScores.last10.map((score, index) => (
                                     <li key={index}>{score}</li>

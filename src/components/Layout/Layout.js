@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React, {PureComponent, Fragment} from 'react';
 import Toolbar from '../Header/Toolbar/Toolbar';
 import Sidebar from '../Header/Sidebar/Sidebar';
 import MemoryGame from '../../containers/MemoryGame/MemoryGame';
-class Layout extends Component {
+class Layout extends PureComponent {
     
     state = {
         showSideDrawer: false
