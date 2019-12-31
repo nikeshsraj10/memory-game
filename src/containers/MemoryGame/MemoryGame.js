@@ -151,11 +151,11 @@ class MemoryGame extends Component {
         return(
             <React.Fragment>
                 {this.revealedCount === this.state.cardGrid.length ?
-                <Modal show={true} >
+                <Modal show={true} > 
                     <div>
-                        <h1>Congrats!! You Win</h1>
+                        <div style={{fontSize: 25, fontWeight:'bold'}}>Congrats!! You Win</div>
                         <h3>You took {this.timer.duration()} second</h3>
-                        <button className={classes.btn}><a href='/'> New Game </a></button>
+                        <button className={classes.btn} onClick={() => {window.location.reload()}}> New Game </button>
                     </div>
                 </Modal>: null}
                 <div className={this.memoryGameClasses.join(' ')}>

@@ -37,12 +37,10 @@
     border-radius: 5px;
     background-color: #20232a;
     padding: 5px;
-}
-
-.btn a {
     text-decoration: none;
     color: #61dafb;
 }
+
 
 .Scores {
     margin: 2px;
