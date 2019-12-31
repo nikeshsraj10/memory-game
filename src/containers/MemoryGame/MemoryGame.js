@@ -168,7 +168,7 @@ class MemoryGame extends Component {
                     </div>
                     <div className={classes.controlsPage}>
                         <div>
-                            <button className={classes.btn}><a href='/'> Reset </a></button>
+                            <button onClick={() => {window.location.reload()}} className={classes.btn}>Reset</button>
                         </div>
                         <div className={classes.Scores}>
                             <div className={[classes.bold, classes.underline].join(' ')}>Scores</div>
