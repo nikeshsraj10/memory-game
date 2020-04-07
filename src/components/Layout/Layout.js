@@ -1,6 +1,5 @@
 import React, {PureComponent, Fragment} from 'react';
-import Toolbar from '../Header/Toolbar/Toolbar';
-import Sidebar from '../Header/Sidebar/Sidebar';
+import Header from '../Header/Header';
 import MemoryGame from '../../containers/MemoryGame/MemoryGame';
 class Layout extends PureComponent {
     
@@ -16,12 +15,11 @@ class Layout extends PureComponent {
             return {showSideDrawer: !prevState.showSideDrawer};
         });
     }
-
+ 
     render(){
         return (
         <Fragment>
-            <Toolbar clicked={this.sidebarToggleHandler}/>
-            <Sidebar open={this.state.showSideDrawer} closed={this.sidebarCloseHandler}/>
+            <Header/>
             <MemoryGame/>
         </Fragment>
         );

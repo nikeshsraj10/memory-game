@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import classes from './MemoryGame.module.css';
 import Modal from '../../components/Modal/Modal';
 import StopWatch from 'stopwatch-js';
@@ -143,11 +144,9 @@ class MemoryGame extends Component {
     }
     
 
-    memoryGameClasses = [classes.MemoryGame];
+    memoryGameClasses = [classes.MemoryGame, 'container'];
     
-    render(){
-        console.log(this.state.cardGrid);
-        
+    render(){        
         return(
             <React.Fragment>
                 {this.revealedCount === this.state.cardGrid.length ?
@@ -175,7 +174,7 @@ class MemoryGame extends Component {
                             <span className={classes.bold}>Best Score: </span><span>{this.myScores.highScore ? this.myScores.highScore : 'None'}</span>
                             <hr/>
                             <div style={{fontWeight:'bold'}}>Last 10 Scores</div>
-                            <ol>
+                            <ol> 
                                 {this.myScores.last10.map((score, index) => (
                                     <li key={index}>{score}</li>
                                 ))}
